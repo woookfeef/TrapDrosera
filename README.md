@@ -1,7 +1,7 @@
 # BalanceAnomalyTrap
-Balance Anomaly Trap — Drosera Trap SERGEANT 
+**Balance Anomaly Trap — Drosera Trap SERGEANT** 
 
-🌍 Objective
+**Objective**
 
 Create a functional and deployable Drosera trap that:
 
@@ -13,7 +13,8 @@ Triggers a response when balance deviation exceeds a given threshold (e.g., 1%),
 
 Integrates with a separate alert contract to handle responses.
 
-🚧 Problem
+
+**Problem**
 
 Ethereum wallets involved in DAO treasury, DeFi protocol management, or vesting operations must maintain a consistent balance. Any unexpected change — loss or gain — could indicate compromise, human error, or exploit.
 
@@ -21,8 +22,11 @@ Solution: Monitor ETH balance of a wallet across blocks. Trigger a response if t
 
 Trap Logic Summary
 
-Trap Contract: BalanceAnomalyTrap.sol
 
+
+**Trap Contract: BalanceAnomalyTrap.sol**
+
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -55,10 +59,10 @@ contract BalanceAnomalyTrap is ITrap {
         return (false, "");
     }
 }
+```
 
-
-Response Contract: LogAlertReceiver.sol
-
+**Response Contract: LogAlertReceiver.sol**
+```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
@@ -69,10 +73,10 @@ contract LogAlertReceiver {
         emit Alert(message);
     }
 }
+```
 
 
-
-✨ What It Solves
+**What It Solves**
 
 Detects suspicious ETH flows from monitored addresses,
 
@@ -82,9 +86,9 @@ Can integrate with automation logic (e.g., freezing funds, emergency DAO alerts)
 
 
 
-Deployment & Setup Instructions
+**Deployment & Setup Instructions**
 
-1. Deploy Contracts (e.g., via Foundry)
+1. **_Deploy Contracts (e.g., via Foundry)_**
 forge create src/BalanceAnomalyTrap.sol:BalanceAnomalyTrap \
   --rpc-url https://ethereum-hoodi-rpc.publicnode.com \
   --private-key 0x...
@@ -93,16 +97,18 @@ forge create src/LogAlertReceiver.sol:LogAlertReceiver \
   --rpc-url https://ethereum-hoodi-rpc.publicnode.com \
   --private-key 0x...
 
-2. Update drosera.toml
+2. **_Update drosera.toml_**
 
 [traps.mytrap]
 path = "out/BalanceAnomalyTrap.sol/BalanceAnomalyTrap.json"
 response_contract = "<LogAlertReceiver address>"
 response_function = "logAnomaly(string)"
 
-3. DROSERA_PRIVATE_KEY=0x... drosera apply
+3. **_Apply changes_**
+DROSERA_PRIVATE_KEY=0x... drosera apply
 
-✅ Testing the Trap
+
+**Testing the Trap**
 
 Send ETH to/from target address on Ethereum Hoodi testnet.
 

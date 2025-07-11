@@ -26,7 +26,7 @@ Solution: _Monitor ETH balance of a wallet across blocks. Trigger a response if 
 
 _Trap Contract: BalanceAnomalyTrap.sol_
 
-
+_Pay attention to this string "address public constant target = 0xABcDEF1234567890abCDef1234567890AbcDeF12; // change 0xABcDEF1234567890abCDef1234567890AbcDeF12 to your own wallet address"_
 ```
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
@@ -37,7 +37,7 @@ interface ITrap {
 }
 
 contract BalanceAnomalyTrap is ITrap {
-    address public constant target = 0xABcDEF1234567890abCDef1234567890AbcDeF12;
+    address public constant target = 0xABcDEF1234567890abCDef1234567890AbcDeF12; // change 0xABcDEF1234567890abCDef1234567890AbcDeF12 to your own wallet address
     uint256 public constant thresholdPercent = 1;
 
     function collect() external override returns (bytes memory) {

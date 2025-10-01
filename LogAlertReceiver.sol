@@ -2,9 +2,12 @@
 pragma solidity ^0.8.20;
 
 contract LogAlertReceiver {
-    event AnomalyDetected(address indexed origin, string reason);
+    event Alert(string message, uint256 totalAlerts);
 
-    function logAnomaly(string calldata reason) external {
-        emit AnomalyDetected(msg.sender, reason);
+    uint256 public totalAlerts;
+
+    function logAnomaly(string calldata message) external {
+        totalAlerts++;
+        emit Alert(message, totalAlerts);
     }
 }

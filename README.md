@@ -137,10 +137,9 @@ DROSERA_PRIVATE_KEY=0x... drosera apply
 
 # Date & Author
 
-_First created: July 10, 2025_
+_First created: October 1, 2025_
 
-## Author: Danzel && Profit_Nodes 
-TG : _@Danzeliti_
+## Author: Cristiano
 
-Discord: _danzel99_
+Discord: cristiano812
 
